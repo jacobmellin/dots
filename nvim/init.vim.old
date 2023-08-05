@@ -1,0 +1,74 @@
+" Use spaces for indentation
+set shiftwidth =4
+set softtabstop =4
+set tabstop =4
+set expandtab
+
+" Relative / hybrid line numbers
+set number
+set relativenumber
+
+" Indented line breaking
+set breakindent
+
+"No highlighted vertical split
+highlight VertSplit cterm=NONE
+
+" Change MatchParen highlight color
+hi MatchParen cterm=none ctermfg=black
+
+"Leader key
+:let mapleader = " "
+
+"Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.config/nvim/plugged')
+
+#Plug 'neoclide/coc.nvim' "Nodejs extension host
+Plug 'tpope/vim-fugitive' "Git Wrapper
+Plug 'iamcco/markdown-preview.vim' "Open a markdown preview?
+Plug 'elixir-editors/vim-elixir' "Elixir
+Plug 'scrooloose/nerdtree' "File system tree
+Plug 'scrooloose/nerdcommenter' "File system tree
+Plug 'tpope/vim-surround' " Surroundings
+
+" Initialize plugin system
+call plug#end()
+
+" Functions
+
+"""" Keys
+
+" Toggle line numbers
+nnoremap <C-G><C-G> :setlocal number!<cr>:setlocal relativenumber!<cr>
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Move lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+inoremap <C-f> <Esc>A<Space>{<CR>}<Esc>ko 
+inoremap <A-l> <C-o>l
+imap jj <Esc>
+
+" Commands
+" Open Tipps
+:command Tipps e ~/.config/nvim/tipps.md
+
+" Run Latex
+:command -nargs=1 Latex :term latexmk -pdf -pvc <f-args> > latexmk.log 
+
+" Lilypond
+:command Lilypond :term ls % | entr lilypond % 
+
+set mouse=a
