@@ -1,11 +1,14 @@
 # Dotfiles for my Arch Install (WIP)
 
-## UI
+## UI/Dependencies
 
 - [Hyprland](https://hyprland.org/) as Window Manager.
-- [Waybar]() as top bar.
-- [Kitty]() as terminal.
-- [Catpuccin]() as color theme for many things.
+- [Waybar](https://sw.kovidgoyal.net/kitty/) as top bar.
+- [Kitty](https://sw.kovidgoyal.net/kitty/) as terminal.
+- [Wofi](https://hg.sr.ht/~scoopta/wofi) as launcher.
+- [Catpuccin](https://github.com/catppuccin/catppuccin) as color theme for many things.
+    - [Catppuccin for Wofi](https://github.com/laymoth/wofi)
+- [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip) as monospaced font.
 
 ## Neovim
 
