@@ -1,0 +1,10 @@
+#!/bin/sh
+Picture="$(/usr/bin/realpath $1)"
+cat > /home/jacob/.config/hypr/hyprpaper.conf <<- EOM
+preload = $Picture
+
+wallpaper = DP-1,$Picture
+wallpaper = DP-3,$Picture
+EOM
+
+killall hyprpaper && nohup hyprpaper &
