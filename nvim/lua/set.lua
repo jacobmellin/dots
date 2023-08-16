@@ -10,5 +10,5 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
-
+vim.opt.cc = "80"
 

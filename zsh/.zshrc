@@ -9,6 +9,13 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 eval "$(pyenv init -)"
 
+daily_reminder=$(cat ~/reminders.txt | shuf | head -n1 | fold -w 80 | xargs -0)
+printf "\u1b[35m$daily_reminder\033[m\n"
+
+echo Noch $((`date -d "Oct 1" +%j` - `date +%j`)) Tage bis Oktober!
+
+echo "No smoking, no drinking alcohol, no eating too much and actively loving oneself."
+
 # Go binaries
 export PATH="$PATH:/home/jacob/go/bin"
 
@@ -87,7 +94,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-z zsh-autosuggestions autojump)
 
-bindkey '^ ' autosuggest-accept
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,8 +124,25 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+# autoload -z edit-command-line; zle -N edit-command_line
+# bindkey 'e^' edit-command-line
+#
 
+# Starship
+eval "$(starship init zsh)"
 
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v
+bindkey '^ ' autosuggest-accept
+bindkey '^R' history-incremental-search-backward
+bindkey -s '^F' "zf^M"
+bindkey -s '^V' "tmv .^M"
+#bindkey -s '^o' 'OPENER=cd;lf\n'
+
+function tmv() {tmux new-window nvim .}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -130,9 +153,6 @@ alias tlmgr='$TEXMFDIST/scripts/texlive/tlmgr.pl --usermode'
 
 # Rust binaries
 export PATH=~/.cargo/bin:$PATH
-
-# Starship
-eval "$(starship init zsh)"
 
 # Autojump
 [[ -s /home/jacob/.autojump/etc/profile.d/autojump.sh ]] && source /home/jacob/.autojump/etc/profile.d/autojump.sh
@@ -145,7 +165,7 @@ export PATH=:/home/jacob/.local/bin:$PATH
 # wine
 alias lutriswine=~/.local/share/lutris/runners/wine/lutris-GE-Proton7-37-x86_64/bin/wine
 
-function zf() { cd $(zshz | awk -e 'match($0, /[0-9]+(.*)/) {print $2}' | fzf) }
+function zf() { cd $(find ~/projekte /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 3 -not -path "*node_modules/*" -type d | fzf) }
 
 alias xo=xdg-open
-
+alias vi=vim

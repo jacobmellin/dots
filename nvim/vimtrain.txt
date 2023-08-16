@@ -1,0 +1,5 @@
+Train the following:
+
+- Write :wq and all symbols on the number row starting at 7 using left shift (pinky)
+- Exit insert mode using Alt+Movement
+- Jump to the end of words using e if there is something to append
