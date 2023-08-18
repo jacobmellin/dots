@@ -76,5 +76,14 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
-vim.keymap.set("n", "<leader>d", "\"_d")
+--vim.keymap.set("n", "<leader>d", "\"_d")
+
+-- search word and change
+vim.keymap.set("n", "<leader>+", ":/<C-r><C-w><CR><S-n>")
+-- to use this, do <leader>+, then change something, then go to next
+-- match using <alt-n> and use . to update the change
+
+-- use ü to go to next paragraph
+-- vim.keymap.set("n", "ü", "}")
+vim.opt.langmap="äöÄÖ;{}[]"
 

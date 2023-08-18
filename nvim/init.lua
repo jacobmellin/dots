@@ -5,18 +5,13 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
--- General config
-require('set')
-require('remap')
-require('plugins')
 require('commands')
-
--- Plugin config
+require('set')
+require('devicons')
 require('colors')
 require('fugitive')
 require('lsp')
-require('devicons')
+require('plugins')
+require('remap')
 require('tree')
-
-
-
+require('treesitter')
