@@ -7,28 +7,44 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 
-	-- telescope fuzzy finder
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.2',
-		-- or                          , branch = '0.1.x',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
+	-- -- telescope fuzzy finder
+	-- use {
+	-- 	'nvim-telescope/telescope.nvim', tag = '0.1.2',
+	-- 	-- or                          , branch = '0.1.x',
+	-- 	requires = { {'nvim-lua/plenary.nvim'} }
+	-- }
+
+    -- status bar (feline)
+    use 'freddiehaddad/feline.nvim'
+
+    -- fzf-lua
+    use { 'ibhagwan/fzf-lua', requires = { 'nvim-tree/nvim-web-devicons' } }
 
 	use { 'catppuccin/nvim', as = "catppuccin" }
 
 --	use ({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 	use ({'nvim-treesitter/nvim-treesitter'})
-	
-	use ({'nvim-treesitter/playground'})
+
+    use ({'nvim-treesitter/playground'})
 
 	use('tpope/vim-fugitive')
 
+
     use 'nvim-tree/nvim-web-devicons'
 
-    use 'nvim-tree/nvim-tree.lua'
+--    use 'nvim-tree/nvim-tree.lua'
+
+    use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+        }
+    }
 
 --    use 'github/copilot.vim'
-    
     use 'Exafunction/codeium.vim'
 
 	use {
@@ -46,4 +62,8 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},     -- Required
 		}
 	}
+
+    use 'YacineDo/mc.nvim'
+
+    use 'terrortylor/nvim-comment'
 end)

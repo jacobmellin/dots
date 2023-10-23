@@ -1,22 +1,35 @@
-local builtin = require('telescope.builtin')
+-- local builtin = require('telescope.builtin')
 
 vim.g.mapleader = " "
 
 -- Space, l, s will open directory browser
 vim.keymap.set("n", "<leader>ls", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>tr", vim.cmd.NvimTreeToggle)
+vim.keymap.set("n", "<leader>tr", vim.cmd.Neotree)
 
--- Space, f will open fuzzy finder
-vim.keymap.set("n", "<leader>p", builtin.find_files, {})
+-- Space, p will open fuzzy finder
+-- vim.keymap.set("n", "<leader>p", builtin.find_files, {})
+vim.keymap.set("n", "<leader>p", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>c", builtin.commands, {})
+-- vim.keymap.set("n", "<leader>c", builtin.commands, {})
+vim.keymap.set("n", "<leader>c", "<cmd>lua require('fzf-lua').commands()<CR>", { silent = true })
 
 -- Ctrl+p will open git file view
-vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+-- vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+vim.keymap.set("n", "<C-p>", "<cmd>lua require('fzf-lua').('git_files')<CR>", { silent = true })
 
-vim.keymap.set('n', '<leader>g', function()
-	builtin.grep_string({ search = vim.fn.input("Grep FF: ") })
-end)
+-- vim.keymap.set('n', '<leader>gr', function()
+-- 	builtin.grep_string({ search = vim.fn.input("Grep FF: ") })
+-- end)
+vim.keymap.set("n", "<leader>gr", "<cmd>lua require('fzf-lua').grep_project()<CR>", { silent = true })
+
+vim.keymap.set("n", "<leader>fd", "<cmd>lua require('fzf-lua').builtin()<CR>", { silent = true })
+vim.keymap.set("n", "<leader>fb", "<cmd>lua require('fzf-lua').buffers()<CR>", { silent = true })
+
+-- Launch vim fugitive
+vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
+
+-- Do a git push through fugitive
+vim.keymap.set('n', '<leader>gp', vim.cmd.GitPush)
 
 -- shift lines around
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -34,9 +47,9 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>z", "<cmd>!zshz | awk -e 'match($0, /[0-9]+(.*)/) {print $2}' | fzf<CR>")
 
 -- insert blocks or brackets
-vim.keymap.set("i", "<C-f>", "<Esc>$bea<Space>{<CR>}<Esc>ko")
-vim.keymap.set("n", "<C-f>", "<Esc>$bea<Space>{<CR>}<Esc>ko")
-vim.keymap.set("i", "<C-b>", "<Esc>$ea{}<Space><Esc>")
+vim.keymap.set("i", "<C-f>", "<Esc>g_a<Space>{<CR>}<Esc>ko")
+vim.keymap.set("n", "<C-f>", "<Esc>g_a<Space>{<CR>}<Esc>ko")
+vim.keymap.set("i", "<C-b>", "<Esc>a{}<Esc>")
 
 -- switch buffers
 vim.keymap.set("n", "<C-s>", "<cmd>bn<CR>")
@@ -64,7 +77,7 @@ vim.keymap.set("n", "<leader>O", "O<Esc>")
 vim.keymap.set("i", "<C-7>", "{")
 vim.keymap.set("i", "<C-0>", "}")
 
--- square brackets 
+-- square brackets
 vim.keymap.set("i", "<C-8>", "[")
 vim.keymap.set("i", "<C-9>", "]")
 
@@ -85,5 +98,11 @@ vim.keymap.set("n", "<leader>+", ":/<C-r><C-w><CR><S-n>")
 
 -- use ü to go to next paragraph
 -- vim.keymap.set("n", "ü", "}")
-vim.opt.langmap="äöÄÖ;{}[]"
+vim.opt.langmap = "äöÄÖ;{}[]"
 
+
+-- accept codeium
+vim.keymap.set("i", "<C-g>", function() return vim.fn["codeium#Accept"]() end, { expr = true })
+
+-- trigger LspZeroFormat
+vim.keymap.set("n", "<leader>f", "<cmd>LspZeroFormat<CR>")

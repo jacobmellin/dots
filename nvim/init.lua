@@ -5,13 +5,22 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
+vim.g.codeium_filetypes = {
+    markdown = false;
+}
+
+require('neo-tree')
 require('commands')
 require('set')
 require('devicons')
-require('colors')
-require('fugitive')
-require('lsp')
 require('plugins')
+require('colors')
+--require('fugitive')
+require('lsp')
 require('remap')
-require('tree')
+-- require('tree')
+require('neotree-plugin')
 require('treesitter')
+require('completions')
+require('comment')
+require('statusbar')
