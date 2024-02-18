@@ -7,20 +7,19 @@ vim.opt.termguicolors = true
 
 vim.g.codeium_filetypes = {
     markdown = false;
+    text = false;
 }
 
-require('neo-tree')
+require('plugins')
 require('commands')
 require('set')
 require('devicons')
-require('plugins')
 require('colors')
---require('fugitive')
 require('lsp')
 require('remap')
--- require('tree')
 require('neotree-plugin')
 require('treesitter')
 require('completions')
 require('comment')
 require('statusbar')
+require('codeium_conf')

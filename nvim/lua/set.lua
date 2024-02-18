@@ -12,3 +12,5 @@ vim.opt.termguicolors = true
 
 vim.opt.cc = "80"
 
+vim.opt.breakindent = true
+

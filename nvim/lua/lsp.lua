@@ -8,6 +8,11 @@ lsp.ensure_installed({
     'html',
     'jsonls',
     'emmet_ls',
+    'phpactor',
+    'tailwindcss',
+    'marksman',
+    'sourcekit',
+    'clangd'
 })
 
 local cmp = require("cmp")
@@ -17,6 +22,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
   ['<C-l>'] = cmp.mapping.confirm({ select = true }),
   ['<C-Space>'] = cmp.mapping.complete(),
+  ['<Tab>'] = cmp.mapping.select_next_item(),
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -30,6 +36,11 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 require('lspconfig').html.setup{}
 require('lspconfig').jsonls.setup{}
 require('lspconfig').emmet_ls.setup{}
+require('lspconfig').phpactor.setup{}
+require('lspconfig').tailwindcss.setup{}
+require('lspconfig').marksman.setup{}
+require('lspconfig').sourcekit.setup{}
+require('lspconfig').clangd.setup{}
 
 -- custom config
 -- code actions

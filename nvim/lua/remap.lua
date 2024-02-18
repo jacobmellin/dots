@@ -106,3 +106,9 @@ vim.keymap.set("i", "<C-g>", function() return vim.fn["codeium#Accept"]() end, {
 
 -- trigger LspZeroFormat
 vim.keymap.set("n", "<leader>f", "<cmd>LspZeroFormat<CR>")
+
+-- quit force all
+vim.keymap.set("n", "<leader>qa", "<cmd>qall<CR>")
+
+-- code actions for lsp/fzf
+vim.keymap.set("n", "<leader>ca", "<cmd>lua require('fzf-lua').lsp_code_actions()<CR>")

@@ -22,6 +22,8 @@ return require('packer').startup(function(use)
 
 	use { 'catppuccin/nvim', as = "catppuccin" }
 
+    use 'rebelot/kanagawa.nvim'
+
 --	use ({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 	use ({'nvim-treesitter/nvim-treesitter'})
 
@@ -45,7 +47,12 @@ return require('packer').startup(function(use)
     }
 
 --    use 'github/copilot.vim'
-    use 'Exafunction/codeium.vim'
+    use {
+        'Exafunction/codeium.vim',
+            config = function()
+            require("codeium").setup({})
+        end
+    }
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
