@@ -1,10 +1,6 @@
 source ~/.myprofile
-#printf "\u1b[35m$daily_reminder\033[m\n"
 
 PURE_PROMPT_SYMBOL=↪
-echo Noch $((`date -d "Oct 1" +%j` - `date +%j`)) Tage bis Oktober!
-
-echo "No smoking, no drinking alcohol, no eating too much and actively loving oneself."
 
 # Go binaries
 export PATH="$PATH:/home/jacob/go/bin"
@@ -15,9 +11,11 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 
-function f() { cd $(find ~/projekte /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 3 -not -path "*node_modules/*" -type d | fzf) }
+function f() { cd $(find ~/projects ~/.config /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 3 -not -path "*node_modules/*" -type d | fzf) }
 function zf() { z "$(z | gawk 'match($0, /^[0-9]+  +(.*)/, result) {print result[1]}' | fzf)" }
 function tmv() { nvim .}
+
+function k() { pkill -f -9 $1 }
 
 #bindkey -M menuselect 'h' vi-backward-char
 #bindkey -M menuselect 'k' vi-up-line-or-history
@@ -57,6 +55,10 @@ alias xo=xdg-open
 alias vi=vim
 alias vim=nvim
 
+function nvimconf() {
+    nvim ~/.config/nvim
+}
+
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
@@ -65,16 +67,42 @@ export CLICOLOR=1
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 
 # Get Znap
-[[ -r ~/tools/znap/znap.zsh ]] ||
-    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/tools/znap
+[[ -r ~/znap-repos/znap/znap.zsh ]] ||
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/znap-repos/znap
 
-source ~/tools/znap/znap.zsh
+source ~/znap-repos/znap/znap.zsh
 
 # ZSH Plugins
 znap prompt sindresorhus/pure
 znap source marlonrichert/zsh-autocomplete
+znap source zsh-users/zsh-completions
 znap source agkozak/zsh-z
 #znap source jeffreytsess/zsh-vi-mode
 #znap source marlonrichter/zcolors
 #znap eval zcolors "zcolors ${(q)LS_COLORS}"
 
+# opam configuration
+[[ ! -r /home/jacob/.opam/opam-init/init.zsh ]] || source /home/jacob/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# Functions
+function countdown() {
+    seconds=$(($1 * 60))
+    start="$(($(date +%s)+ $seconds))"
+    while [ "$start" -ge `date +%s` ]; do
+        time="$(( $start - `date +%s` ))"
+        printf '%s\r' "$(date -u -d "@$time" +"%H:%M:%S")"
+    done
+    pw-play "/tmp/INTERVAL_BELL.mp3"
+}
+
+# bun completions
+[ -s "/home/jacob/.bun/_bun" ] && source "/home/jacob/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Shopify Hydrogen alias to local projects
+alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
+
+alias ls='ls -F --color=auto'

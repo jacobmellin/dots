@@ -47,12 +47,12 @@ return require('packer').startup(function(use)
     }
 
 --    use 'github/copilot.vim'
-    use {
-        'Exafunction/codeium.vim',
-            config = function()
-            require("codeium").setup({})
-        end
-    }
+    -- use {
+    --     'Exafunction/codeium.vim',
+    --         config = function()
+    --         require("codeium").setup({})
+    --     end
+    -- }
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',

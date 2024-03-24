@@ -11,8 +11,8 @@ lsp.ensure_installed({
     'phpactor',
     'tailwindcss',
     'marksman',
-    'sourcekit',
-    'clangd'
+    'clangd',
+    'jedi_language_server',
 })
 
 local cmp = require("cmp")
@@ -41,6 +41,7 @@ require('lspconfig').tailwindcss.setup{}
 require('lspconfig').marksman.setup{}
 require('lspconfig').sourcekit.setup{}
 require('lspconfig').clangd.setup{}
+require('lspconfig').jedi_language_server.setup{}
 
 -- custom config
 -- code actions
