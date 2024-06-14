@@ -11,9 +11,9 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 
-function f() { cd $(find ~/projects ~/.config /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 3 -not -path "*node_modules/*" -type d | fzf) }
+function f() { cd $(find ~/ ~/projects ~/.config /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 3 -not -path "*node_modules/*" -type d | fzf) }
 function zf() { z "$(z | gawk 'match($0, /^[0-9]+  +(.*)/, result) {print result[1]}' | fzf)" }
-function tmv() { nvim .}
+function tmv() { nohup neovide . & }
 
 function k() { pkill -f -9 $1 }
 
@@ -27,6 +27,7 @@ function k() { pkill -f -9 $1 }
 bindkey -s '^F' "f^M"
 bindkey -s '^Z' "zf^M"
 bindkey -s '^V' "tmv .^M"
+bindkey -s '^O' "nvim ~/Nextcloud/ObsidianVault ^M"
 #bindkey -s '^o' 'OPENER=cd;lf\n'
 
 bindkey '^T' '__fzf_history__'
@@ -77,6 +78,7 @@ znap prompt sindresorhus/pure
 znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-completions
 znap source agkozak/zsh-z
+znap source joshskidmore/zsh-fzf-history-search
 #znap source jeffreytsess/zsh-vi-mode
 #znap source marlonrichter/zcolors
 #znap eval zcolors "zcolors ${(q)LS_COLORS}"
@@ -106,3 +108,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
 
 alias ls='ls -F --color=auto'
+
+eval `ssh-agent`
+#ssh-add ~/.ssh/id_rsa_old

@@ -73,4 +73,17 @@ return require('packer').startup(function(use)
     use 'YacineDo/mc.nvim'
 
     use 'terrortylor/nvim-comment'
-end)
+
+    use{
+          "epwalsh/obsidian.nvim",
+          tag = "*",  -- recommended, use latest release instead of latest commit
+          requires = {
+                -- Required.
+                "nvim-lua/plenary.nvim",
+
+                -- see below for full list of optional dependencies 👇
+          }
+      }
+
+    use 'lervag/vimtex'
+  end)
