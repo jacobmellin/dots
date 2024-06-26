@@ -1,6 +1,6 @@
 source ~/.myprofile
 
-PURE_PROMPT_SYMBOL=↪
+PURE_PROMPT_SYMBOL=
 
 # Go binaries
 export PATH="$PATH:/home/jacob/go/bin"
@@ -75,10 +75,11 @@ source ~/znap-repos/znap/znap.zsh
 
 # ZSH Plugins
 znap prompt sindresorhus/pure
-znap source marlonrichert/zsh-autocomplete
+#znap source marlonrichert/zsh-autocomplete
 znap source zsh-users/zsh-completions
 znap source agkozak/zsh-z
 znap source joshskidmore/zsh-fzf-history-search
+znap source zsh-users/zsh-autosuggestions
 #znap source jeffreytsess/zsh-vi-mode
 #znap source marlonrichter/zcolors
 #znap eval zcolors "zcolors ${(q)LS_COLORS}"
@@ -111,3 +112,11 @@ alias ls='ls -F --color=auto'
 
 eval `ssh-agent`
 #ssh-add ~/.ssh/id_rsa_old
+
+function stich() {
+  echo "$(date -Iseconds): $1" >> stiche.txt 
+}
+
+function tabletarea() {
+  exec xsetwacom set "Wacom Intuos Pro M Pen stylus" MapToOutput $(slop)
+}
