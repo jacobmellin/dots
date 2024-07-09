@@ -12,7 +12,7 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 
 function f() { cd $(find ~/ ~/projects ~/.config /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 3 -not -path "*node_modules/*" -type d | fzf) }
-function zf() { z "$(z | gawk 'match($0, /^[0-9]+  +(.*)/, result) {print result[1]}' | fzf)" }
+function zf() { zshz "$(zshz | gawk 'match($0, /^[0-9]+  +(.*)/, result) {print result[1]}' | fzf)" }
 function tmv() { nohup neovide . & }
 
 function k() { pkill -f -9 $1 }
@@ -22,15 +22,14 @@ function k() { pkill -f -9 $1 }
 #bindkey -M menuselect 'l' vi-forward-char
 #bindkey -M menuselect 'j' vi-down-line-or-history
 #bindkey -v
-#bindkey '^ ' autosuggest-accept
+bindkey '^K' autosuggest-accept
 #bindkey '^R' history-incremental-search-backward
 bindkey -s '^F' "f^M"
 bindkey -s '^Z' "zf^M"
 bindkey -s '^V' "tmv .^M"
 bindkey -s '^O' "nvim ~/Nextcloud/ObsidianVault ^M"
+bindkey -s '^ö' "lfcd"
 #bindkey -s '^o' 'OPENER=cd;lf\n'
-
-bindkey '^T' '__fzf_history__'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -110,7 +109,7 @@ alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
 
 alias ls='ls -F --color=auto'
 
-eval `ssh-agent`
+#eval `ssh-agent`
 #ssh-add ~/.ssh/id_rsa_old
 
 function stich() {
@@ -119,4 +118,9 @@ function stich() {
 
 function tabletarea() {
   exec xsetwacom set "Wacom Intuos Pro M Pen stylus" MapToOutput $(slop)
+}
+
+lfcd () {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -print-last-dir "$@")"
 }
