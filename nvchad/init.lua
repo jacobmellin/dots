@@ -33,7 +33,11 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
+
 require("configs/neovide")
+--require("configs/llm")
+require("configs/obsidian")
+require("configs/snippets")
 
 vim.schedule(function()
   require "mappings"
