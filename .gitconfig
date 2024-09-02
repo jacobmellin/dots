@@ -1,0 +1,21 @@
+[user]
+	email = mail@jacobmellin.de
+	name = Jacob Mellin
+[safe]
+	directory = /media/home/jacob/projekte/shopify-storefront
+	directory = /media/home/jacob/projekte/hgs-shopify
+[maintenance]
+	repo = /home/jacob/znap-repos/znap
+	repo = /home/jacob/znap-repos/agkozak/zsh-z
+	repo = /home/jacob/znap-repos/joshskidmore/zsh-fzf-history-search
+	repo = /home/jacob/znap-repos/marlonrichert/zsh-autocomplete
+	repo = /home/jacob/znap-repos/sindresorhus/pure
+	repo = /home/jacob/znap-repos/zsh-users/zsh-completions
+[init]
+	defaultBranch = main
+[merge]
+	conflictstyle = diff3
+[interactive]
+	diffFilter = delta --color-only
+[core]
+	pager = delta

@@ -1,2 +1,3 @@
 #!/bin/sh
 rsync -avh ~/.config/nvim/* --exclude ".git/" ~/dots/nvchad
+rsync -avh ~/.gitconfig ~/dots
