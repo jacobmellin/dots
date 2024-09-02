@@ -4,6 +4,8 @@ require "nvchad.options"
 
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
+
+vim.o.conceallevel = 1
 --
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -21,13 +23,16 @@ vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float(nil)<CR>")
 vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>")
 
 -- leave terminal mode
-vim.keymap.set("t", "<C-space>", "<C-\\><C-n><cmd>b 1<CR>")
+vim.keymap.set("t", "<A-k>", "<C-\\><C-n><C-w>k<CR>")
+vim.keymap.set("t", "<A-h>", "<C-\\><C-n><C-w>h<CR>")
+vim.keymap.set("t", "<A-l>", "<C-\\><C-n><C-w>l<CR>")
+vim.keymap.set("t", "<A-j>", "<C-\\><C-n><C-w>j<CR>")
 
 -- open parent folder of active file
-vim.keymap.set("n", "<leader>pr", "<cmd>e %:p:h<CR>")
+vim.keymap.set("n", "<leader>pr", "<cmd>OpenParentFolder<CR>")
 
 -- make executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- insert blocks or brackets
 vim.keymap.set("i", "<C-f>", "<Esc>g_a<Space>{<CR>}<Esc>ko")
@@ -69,3 +74,26 @@ vim.keymap.set("n", "<leader>ov", "<cmd>ObsidianTemplate<cr>")
 
 -- show undotree
 vim.keymap.set("n", "<leader>tr", "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>")
+
+-- make executable
+vim.api.nvim_create_user_command('MakeExecutable', function()
+  vim.fn.execute("!chmod a+x %")
+end, {})
+
+vim.api.nvim_create_user_command('OpenParentFolder', function()
+  vim.fn.execute("cd `dirname %`")
+end, {})
+
+vim.api.nvim_create_user_command('CloseOtherBuffers', function()
+  -- vim.fn.execute("%bd|e#")
+  require("nvchad.tabufline").closeAllBufs(false)
+end, {})
+
+vim.keymap.set("n", "<leader>co", "<cmd>CloseOtherBuffers<cr>")
+
+-- telescope commands
+vim.keymap.set("n", "<leader>fk", "<cmd>Telescope commands<CR>")
+
+-- open os terminal
+vim.keymap.set("n", "<leader>to", "<cmd>!kitty --detach `dirname %`<CR><CR")
+

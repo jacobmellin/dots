@@ -38,7 +38,7 @@ require("configs/neovide")
 --require("configs/llm")
 require("configs/obsidian")
 require("configs/snippets")
-
+require("configs/parrot")
 vim.schedule(function()
   require "mappings"
 end)
