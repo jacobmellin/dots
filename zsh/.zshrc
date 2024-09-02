@@ -2,6 +2,9 @@ source ~/.myprofile
 
 PURE_PROMPT_SYMBOL=
 
+# android
+export PATH="$PATH:/opt/android-sdk/platform-tools"
+
 # Go binaries
 export PATH="$PATH:/home/jacob/go/bin"
 export PATH="$PATH:/home/jacob/scripts"
@@ -13,6 +16,7 @@ SAVEHIST=10000000
 
 function f() { cd $(find ~/ ~/projects ~/.config /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 3 -not -path "*node_modules/*" -type d | fzf) }
 function zf() { zshz "$(zshz | gawk 'match($0, /^[0-9]+  +(.*)/, result) {print result[1]}' | fzf)" }
+function zfv() { zshz "$(zshz | gawk 'match($0, /^[0-9]+  +(.*)/, result) {print result[1]}' | fzf)" && nohup neovide . >/dev/null 2&1 }
 function tmv() { nohup neovide . & }
 
 function k() { pkill -f -9 $1 }
@@ -26,6 +30,7 @@ bindkey '^K' autosuggest-accept
 #bindkey '^R' history-incremental-search-backward
 bindkey -s '^F' "f^M"
 bindkey -s '^Z' "zf^M"
+bindkey -s '^P' "zfv^M"
 bindkey -s '^V' "tmv .^M"
 bindkey -s '^O' "nvim ~/Nextcloud/ObsidianVault ^M"
 bindkey -s '^ö' "lfcd"
