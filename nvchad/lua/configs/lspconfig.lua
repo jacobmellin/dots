@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "gopls", "html", "cssls", "emmet_ls", "tsserver", "ltex" }
+local servers = { "gopls", "html", "cssls", "emmet_ls", "tsserver", "ltex"  }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -35,3 +35,8 @@ lspconfig.ltex.setup({
     }
   }
 })
+
+-- lspconfig.gdscript.setup{cmd = {"ncat", "localhost", "6005"}, root_dir = function() {
+--   return root
+-- end
+-- }

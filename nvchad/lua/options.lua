@@ -5,7 +5,9 @@ require "nvchad.options"
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
-vim.o.conceallevel = 1
+vim.o.conceallevel = 2
+vim.o.expandtab = true
+vim.o.shiftwidth=4
 --
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

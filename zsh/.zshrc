@@ -9,6 +9,8 @@ export PATH="$PATH:/opt/android-sdk/platform-tools"
 export PATH="$PATH:/home/jacob/go/bin"
 export PATH="$PATH:/home/jacob/scripts"
 
+export PATH="$PATH:/home/jacob/projects/streaming"
+
 # User configuration (ZSH)
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000

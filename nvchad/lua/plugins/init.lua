@@ -232,6 +232,29 @@ return {
   dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' },
   -- optionally include "rcarriga/nvim-notify" for beautiful notifications
     config = function()
-    end 
-  }
+    end
+  },
+  -- {
+  --   'hadronized/hop.nvim',
+  --   lazy = true,
+  --   branch = 'v2',
+  --   config = function()
+  --     require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+  --   end
+  -- }
+  -- {
+  --   "ggandor/leap.nvim",
+  --   lazy = false,
+  --   config = function()
+  --     require('leap').create_default_mappings()
+  --   end
+  -- }
+  {
+    'folke/flash.nvim',
+    lazy = false,
+    config = function()
+      -- require("flash").treesitter()
+      require('../configs/flash')
+    end
+  }, 
 }
