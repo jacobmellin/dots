@@ -10,13 +10,14 @@ export PATH="$PATH:/home/jacob/go/bin"
 export PATH="$PATH:/home/jacob/scripts"
 
 export PATH="$PATH:/home/jacob/projects/streaming"
+export PATH="$PATH:/home/jacob/bin"
 
 # User configuration (ZSH)
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 
-function f() { cd $(find ~/ ~/projects ~/.config /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 3 -not -path "*node_modules/*" -type d | fzf) }
+function f() { cd $(find ~/ ~/projects ~/.config /media/ssd/Projekte ~/Nextcloud/Projekte -maxdepth 7 -not -path "*node_modules/*" -type d | fzf) }
 function zf() { zshz "$(zshz | gawk 'match($0, /^[0-9]+  +(.*)/, result) {print result[1]}' | fzf)" }
 function zfv() { zshz "$(zshz | gawk 'match($0, /^[0-9]+  +(.*)/, result) {print result[1]}' | fzf)" && nohup neovide . >/dev/null 2&1 }
 function tmv() { nohup neovide . & }
@@ -31,12 +32,23 @@ function k() { pkill -f -9 $1 }
 bindkey '^K' autosuggest-accept
 #bindkey '^R' history-incremental-search-backward
 bindkey -s '^F' "f^M"
+bindkey -s '^T' "task^M"
 bindkey -s '^Z' "zf^M"
 bindkey -s '^P' "zfv^M"
 bindkey -s '^V' "tmv .^M"
 bindkey -s '^O' "nvim ~/Nextcloud/ObsidianVault ^M"
 bindkey -s '^ö' "lfcd"
 #bindkey -s '^o' 'OPENER=cd;lf\n'
+
+
+alias ctl=systemctl
+
+
+
+
+
+
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -115,6 +127,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'
 
 alias ls='ls -F --color=auto'
+
+
 
 #eval `ssh-agent`
 #ssh-add ~/.ssh/id_rsa_old
