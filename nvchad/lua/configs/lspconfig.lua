@@ -29,9 +29,9 @@ lspconfig.ltex.setup({
   settings = {
     ltex = {
       language = 'de',
-      additionalRules = {
-        languageModel = "~/languagetool/ngrams/"
-      }
+      -- additionalRules = {
+      --   languageModel = "~/languagetool/ngrams/"
+      -- }
     }
   }
 })

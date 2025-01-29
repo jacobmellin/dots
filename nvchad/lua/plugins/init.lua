@@ -160,7 +160,6 @@ return {
       -- see below for full list of optional dependencies 👇
     },
   }, {
-    "mbbill/undotree",
     lazy = false
   }, {
     'mrcjkb/rustaceanvim',
@@ -227,11 +226,21 @@ return {
   --   },
   -- },
   -- }
+  -- {
+  -- "frankroeder/parrot.nvim",
+  -- dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' },
+  -- -- optionally include "rcarriga/nvim-notify" for beautiful notifications
+  --   config = function()
+  --   end
+  -- },
   {
-  "frankroeder/parrot.nvim",
-  dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' },
-  -- optionally include "rcarriga/nvim-notify" for beautiful notifications
+    "olimorris/codecompanion.nvim",
     config = function()
+      require("codecompanion").setup({
+        opts = {
+          log_level = "DEBUG"
+        }
+      })
     end
   },
   -- {
@@ -256,5 +265,9 @@ return {
       -- require("flash").treesitter()
       require('../configs/flash')
     end
-  }, 
+  }, {
+    'pocco81/true-zen.nvim',
+    config = function()
+    end
+  }
 }

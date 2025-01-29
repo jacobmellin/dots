@@ -71,8 +71,11 @@ vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianTags<cr>")
 vim.keymap.set("n", "<leader>od", "<cmd>ObsidianDailies<cr>")
 vim.keymap.set("n", "<leader>ov", "<cmd>ObsidianTemplate<cr>")
 
--- show diagnostic window
+--COdecompanionActions
+vim.keymap.set("v", "<leader>cc", "<cmd>CodeCompanionActions<cr>")
+vim.keymap.set("n", "<leader>cc", "<cmd>CodeCompanionActions<cr>")
 -- vim.api.nvim_set_keymap("n", "<leader>i", ":lua vim.diagnostic.open_float(nil, { focus=true, scope='cursor' })<CR>", default_opts)
+-- show diagnostic window
 
 -- show undotree
 vim.keymap.set("n", "<leader>tr", "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>")
@@ -85,6 +88,9 @@ end, {})
 vim.api.nvim_create_user_command('OpenParentFolder', function()
   vim.fn.execute("cd `dirname %`")
 end, {})
+
+-- vim.api.nvim_create_user_command('PasteSystemClipboard', function()
+-- end,{})
 
 vim.api.nvim_create_user_command('CloseOtherBuffers', function()
   -- vim.fn.execute("%bd|e#")
